@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { PageCurtain } from './components/MotionPrimitives';
+import { HandprintSvgDefs } from './components/PaintedHandprints';
 
 // Dedicated Full Pages
 import { HomePage } from './pages/HomePage';
@@ -117,6 +118,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col text-[#2A2540] font-sans selection:bg-amber-200 selection:text-[#2A2540]">
+      {/* Shared SVG Tempera Paint & Crayon Filters for Children's Handprints */}
+      <HandprintSvgDefs />
+
       {/* Blurred Purple-to-Pink Glass Curtain for Page Transitions */}
       <PageCurtain phase={curtainPhase} />
 

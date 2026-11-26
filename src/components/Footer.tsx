@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { DAYCARE_CONFIG } from '../data/daycareData';
 import { PageId, ProgramType } from '../types';
+import { PaintedHandprintsLayer } from './PaintedHandprints';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -48,6 +49,7 @@ export function Footer({
         className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#F0368A]/15 blur-3xl pointer-events-none"
         aria-hidden="true"
       />
+      <PaintedHandprintsLayer variant="corner" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Grid */}

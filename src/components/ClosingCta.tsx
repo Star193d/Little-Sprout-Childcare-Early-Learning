@@ -1,5 +1,6 @@
 import { Calendar } from 'lucide-react';
 import { Reveal } from './MotionPrimitives';
+import { PaintedHandprintsLayer } from './PaintedHandprints';
 
 interface ClosingCtaProps {
   onOpenTour: () => void;
@@ -20,6 +21,7 @@ export function ClosingCta({ onOpenTour }: ClosingCtaProps) {
               className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#7A35E0]/15 blur-2xl pointer-events-none"
               aria-hidden="true"
             />
+            <PaintedHandprintsLayer variant="corner" />
 
             <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
               {/* Left: Playful Morphing Badge */}

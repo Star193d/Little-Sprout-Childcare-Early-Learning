@@ -465,6 +465,21 @@
   }
 }
 
+/* Gentle Painted Handprint Drift */
+.handprint-float {
+  animation: handprintDrift 12s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes handprintDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(4px, -10px, 0) rotate(2.5deg);
+  }
+}
+
 /* Split Headline Word Pop-In */
 .split-word {
   display: inline-block;
@@ -678,5 +693,8 @@ details.glass-accordion[open] > div {
   }
   .curtain {
     display: none;
+  }
+  .handprint-float {
+    animation: none !important;
   }
 }

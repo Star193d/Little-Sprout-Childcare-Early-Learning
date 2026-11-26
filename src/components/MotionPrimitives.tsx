@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
 import { DAYCARE_IMAGES } from '../data/daycareData';
+import { PaintedHandprintsLayer } from './PaintedHandprints';
 
 /**
  * Full-screen blurred purple-to-pink glass page transition curtain (.curtain)
@@ -114,6 +115,7 @@ export function FloatingBlobs({ variant = 'light' }: FloatingBlobsProps) {
       <div className="blob b1" />
       <div className="blob b2" />
       {variant !== 'band' && <div className="blob b3" />}
+      <PaintedHandprintsLayer variant={variant} />
     </div>
   );
 }

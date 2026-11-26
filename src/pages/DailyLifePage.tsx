@@ -28,6 +28,7 @@ import {
   SectionHeading,
   WaveDivider,
 } from '../components/MotionPrimitives';
+import { PaintedHandprintsLayer } from '../components/PaintedHandprints';
 
 interface DailyLifePageProps {
   onNavigate: (page: PageId) => void;
@@ -269,6 +270,7 @@ export function DailyLifePage({
       {/* 3. Scroll-Driven Vertical Animated Daily Routine Timeline (Navy Band) */}
       <section className="relative bg-[#2A2540] text-white py-20 sm:py-24 overflow-hidden">
         <WaveDivider position="top" />
+        <PaintedHandprintsLayer variant="band" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <SectionHeading
