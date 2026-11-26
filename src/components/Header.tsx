@@ -126,7 +126,13 @@ export function Header({
                 onClick={() => setProgramsDropdownOpen((prev) => !prev)}
                 aria-expanded={programsDropdownOpen}
                 aria-haspopup="true"
-                className={`${linkClass(programsDropdownOpen || currentPage === 'programs')} flex items-center gap-1`}
+                className={`${linkClass(
+                  programsDropdownOpen ||
+                    currentPage === 'programs' ||
+                    currentPage === 'daily-life' ||
+                    currentPage === 'safety' ||
+                    currentPage === 'resources'
+                )} flex items-center gap-1`}
               >
                 <span>Programs</span>
                 <ChevronDown
@@ -261,18 +267,6 @@ export function Header({
               )}
             </div>
 
-            <button onClick={() => handleNavClick('daily-life')} className={linkClass(currentPage === 'daily-life')}>
-              Daily Life
-            </button>
-
-            <button onClick={() => handleNavClick('safety')} className={linkClass(currentPage === 'safety')}>
-              Safety
-            </button>
-
-            <button onClick={() => handleNavClick('resources')} className={linkClass(currentPage === 'resources')}>
-              Resources
-            </button>
-
             <button onClick={() => handleNavClick('contact')} className={linkClass(currentPage === 'contact')}>
               Contact
             </button>
@@ -387,42 +381,33 @@ export function Header({
                     <ArrowRight className="w-3.5 h-3.5" />
                     <span>View All Programs Overview</span>
                   </button>
+                  <button
+                    onClick={() => handleNavClick('daily-life')}
+                    className={`w-full flex items-center justify-between p-2 text-xs font-semibold rounded-xl cursor-pointer ${
+                      currentPage === 'daily-life' ? 'bg-white/20 text-[#FFC81E]' : 'text-white/90 hover:bg-white/15'
+                    }`}
+                  >
+                    <span>🕒 Daily Life &amp; Routine</span>
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('safety')}
+                    className={`w-full flex items-center justify-between p-2 text-xs font-semibold rounded-xl cursor-pointer ${
+                      currentPage === 'safety' ? 'bg-white/20 text-[#FFC81E]' : 'text-white/90 hover:bg-white/15'
+                    }`}
+                  >
+                    <span>🛡️ Health &amp; Safety</span>
+                  </button>
+                  <button
+                    onClick={() => handleNavClick('resources')}
+                    className={`w-full flex items-center justify-between p-2 text-xs font-semibold rounded-xl cursor-pointer ${
+                      currentPage === 'resources' ? 'bg-white/20 text-[#FFC81E]' : 'text-white/90 hover:bg-white/15'
+                    }`}
+                  >
+                    <span>📚 Parent Resources &amp; FAQ</span>
+                  </button>
                 </div>
               )}
             </div>
-
-            <button
-              onClick={() => handleNavClick('daily-life')}
-              className={`text-left px-3.5 py-2.5 text-sm rounded-2xl font-bold border ${
-                currentPage === 'daily-life'
-                  ? 'bg-white/25 border-white/45 text-white'
-                  : 'border-transparent text-white/90 hover:bg-white/10'
-              }`}
-            >
-              Daily Life &amp; Routine
-            </button>
-
-            <button
-              onClick={() => handleNavClick('safety')}
-              className={`text-left px-3.5 py-2.5 text-sm rounded-2xl font-bold border ${
-                currentPage === 'safety'
-                  ? 'bg-white/25 border-white/45 text-white'
-                  : 'border-transparent text-white/90 hover:bg-white/10'
-              }`}
-            >
-              Health &amp; Safety
-            </button>
-
-            <button
-              onClick={() => handleNavClick('resources')}
-              className={`text-left px-3.5 py-2.5 text-sm rounded-2xl font-bold border ${
-                currentPage === 'resources'
-                  ? 'bg-white/25 border-white/45 text-white'
-                  : 'border-transparent text-white/90 hover:bg-white/10'
-              }`}
-            >
-              Parent Resources &amp; FAQ
-            </button>
 
             <button
               onClick={() => handleNavClick('contact')}

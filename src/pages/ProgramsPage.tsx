@@ -11,8 +11,17 @@ import {
   BookOpen,
   ShieldCheck,
   ChevronRight,
+  Apple,
+  Plus,
 } from 'lucide-react';
-import { DAYCARE_IMAGES, PROGRAM_DETAILS } from '../data/daycareData';
+import {
+  DAILY_ROUTINE_SCHEDULE,
+  DAYCARE_IMAGES,
+  FAQ_ITEMS,
+  PROGRAM_DETAILS,
+  SAFETY_STANDARDS,
+  SAMPLE_MENU,
+} from '../data/daycareData';
 import { PageId, ProgramType } from '../types';
 import {
   FloatingBlobs,
@@ -29,10 +38,12 @@ interface ProgramsPageProps {
 }
 
 export function ProgramsPage({
+  onNavigate,
   onOpenTour,
   onEnrollInProgram,
 }: ProgramsPageProps) {
   const [selectedTab, setSelectedTab] = useState<ProgramType>('infant');
+  const [resourceTab, setResourceTab] = useState<'daily-life' | 'safety' | 'resources'>('daily-life');
 
   const activeProgram = PROGRAM_DETAILS[selectedTab];
 
@@ -383,6 +394,228 @@ export function ProgramsPage({
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* 4. Moved Sections Inside Programs: Daily Life, Safety & Resources */}
+      <section className="py-14 sm:py-16 relative overflow-hidden">
+        <FloatingBlobs variant="light" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <SectionHeading
+            title="Daily Life, Safety & Family Resources"
+            subtitle="Explore how our daily rhythms, classroom safety protocols, and parent guides support every program."
+          />
+
+          {/* Interactive Switcher for Daily Life / Safety / Resources */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex flex-wrap justify-center p-1.5 rounded-2xl glass-lt gap-1.5 border border-purple-200/70">
+              <button
+                onClick={() => setResourceTab('daily-life')}
+                className={`px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer border whitespace-nowrap ${
+                  resourceTab === 'daily-life'
+                    ? 'bg-[#7A35E0] text-white border-[#7A35E0] shadow-sm'
+                    : 'text-[#2A2540] border-transparent hover:bg-purple-50'
+                }`}
+              >
+                <Clock className="w-4 h-4" />
+                <span>Daily Life</span>
+              </button>
+
+              <button
+                onClick={() => setResourceTab('safety')}
+                className={`px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer border whitespace-nowrap ${
+                  resourceTab === 'safety'
+                    ? 'bg-[#F0368A] text-white border-[#F0368A] shadow-sm'
+                    : 'text-[#2A2540] border-transparent hover:bg-pink-50'
+                }`}
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Safety</span>
+              </button>
+
+              <button
+                onClick={() => setResourceTab('resources')}
+                className={`px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer border whitespace-nowrap ${
+                  resourceTab === 'resources'
+                    ? 'bg-[#FFC81E] text-[#2A2540] border-[#e6b00e] shadow-sm'
+                    : 'text-[#2A2540] border-transparent hover:bg-amber-50'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Resources</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Tab Panel Content */}
+          {resourceTab === 'daily-life' && (
+            <div key="tab-daily-life" className="glass-lt interactive-card p-6 sm:p-8 space-y-6 step-swap">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-purple-200/60">
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-[#2A2540]">
+                    Daily Life &amp; Organic Nutrition
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                    Balanced rhythms of morning discovery, fresh scratch-cooked meals, outdoor nature play, and peaceful rest.
+                  </p>
+                </div>
+                <button
+                  onClick={() => onNavigate('daily-life')}
+                  className="btn-sprout-purple px-5 py-2.5 text-xs sm:text-sm inline-flex items-center gap-2 shrink-0 cursor-pointer"
+                >
+                  <span>Full Daily Schedule &amp; Menu</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="lg:col-span-7 space-y-3">
+                  {DAILY_ROUTINE_SCHEDULE.slice(0, 5).map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 rounded-2xl bg-white/85 border border-purple-200/60"
+                    >
+                      <div>
+                        <p className="font-heading font-bold text-sm sm:text-base text-[#2A2540]">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                      <span className="text-xs font-mono font-bold text-[#7A35E0] shrink-0 sm:pl-4">
+                        {item.time}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="lg:col-span-5 bg-white/85 rounded-2xl p-6 border border-emerald-200/80 flex flex-col justify-between space-y-5">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 ico-morph bg-emerald-100 text-[#6DB93E] flex items-center justify-center border border-emerald-200 shrink-0">
+                        <Apple className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="font-heading font-bold text-lg text-[#2A2540]">
+                          Sample Scratch-Kitchen Menu
+                        </h4>
+                        <p className="text-xs text-slate-500 font-semibold">
+                          100% Organic &amp; Nut-Safe ({SAMPLE_MENU[0].day})
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 text-xs sm:text-sm text-slate-700">
+                      <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/60">
+                        <span className="font-bold text-[#2A2540] block">Morning Breakfast</span>
+                        <span className="text-slate-600">{SAMPLE_MENU[0].breakfast}</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/60">
+                        <span className="font-bold text-[#2A2540] block">Warm Lunch</span>
+                        <span className="text-slate-600">{SAMPLE_MENU[0].lunch}</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-purple-50/70 border border-purple-200/60">
+                        <span className="font-bold text-[#2A2540] block">Afternoon Snack</span>
+                        <span className="text-slate-600">{SAMPLE_MENU[0].snack}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => onNavigate('daily-life')}
+                    className="btn-sprout-yel w-full py-2.5 px-4 text-xs sm:text-sm cursor-pointer inline-flex items-center justify-center gap-2"
+                  >
+                    <span>Browse Full 5-Day Menu</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {resourceTab === 'safety' && (
+            <div key="tab-safety" className="glass-lt interactive-card p-6 sm:p-8 space-y-6 step-swap">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-pink-200/60">
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-[#2A2540]">
+                    Health, Safety &amp; Campus Security
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                    Hospital-grade air filtration, controlled PIN access, allergen zones, and 100% pediatric CPR certified educators.
+                  </p>
+                </div>
+                <button
+                  onClick={() => onNavigate('safety')}
+                  className="btn-sprout px-5 py-2.5 text-xs sm:text-sm inline-flex items-center gap-2 shrink-0 cursor-pointer"
+                >
+                  <span>Full Safety Protocols</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {SAFETY_STANDARDS.map((item) => (
+                  <div
+                    key={item.title}
+                    className="p-5 rounded-2xl bg-white/85 border border-purple-200/60 space-y-2"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <ShieldCheck className="w-5 h-5 text-[#F0368A] shrink-0" />
+                      <span className="text-[11px] font-bold text-[#7A35E0]">
+                        {item.badge}
+                      </span>
+                    </div>
+                    <h4 className="font-heading font-bold text-base text-[#2A2540]">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {resourceTab === 'resources' && (
+            <div key="tab-resources" className="glass-lt interactive-card p-6 sm:p-8 space-y-6 step-swap">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-amber-200/70">
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-[#2A2540]">
+                    Parent Resources, Handbook &amp; FAQs
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                    Answers to common enrollment questions, packing checklists, and family policies in one place.
+                  </p>
+                </div>
+                <button
+                  onClick={() => onNavigate('resources')}
+                  className="btn-sprout-yel px-5 py-2.5 text-xs sm:text-sm inline-flex items-center gap-2 shrink-0 cursor-pointer"
+                >
+                  <span>Open Handbook &amp; Checklist</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                {FAQ_ITEMS.slice(0, 5).map((faq, idx) => (
+                  <details
+                    key={idx}
+                    className="glass-accordion bg-white/85 rounded-2xl border border-purple-200/60 p-4 sm:p-5"
+                  >
+                    <summary className="flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base text-[#2A2540]">
+                      <span>{faq.q}</span>
+                      <Plus className="w-4 h-4 text-[#7A35E0] shrink-0 acc-plus" />
+                    </summary>
+                    <div className="pt-3 mt-3 border-t border-purple-200/50 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {faq.a}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
