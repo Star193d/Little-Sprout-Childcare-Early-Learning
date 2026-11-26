@@ -1,0 +1,6 @@
+{
+  "name": "Sunny Days Learning",
+  "description": "A modern, professional, colorful early learning & childcare website featuring program overviews, daily life galleries, parent trust elements, tour booking, and interactive registration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
